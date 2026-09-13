@@ -1,8 +1,7 @@
 # omarchy-cheatsheet
 
 An interactive cheatsheet for [Omarchy](https://omarchy.org/) terminal commands,
-shown through the Omarchy menu. Press **Super + O** to open it, just like the
-Neovim cheatsheet on **Super + N**.
+shown through the Omarchy menu. Press **Super + O** to open it.
 
 ![Omarchy Commands cheatsheet](https://raw.githubusercontent.com/azzenabidi/omarchy-cheatsheet/master/om-cheatsheet.png)
 
