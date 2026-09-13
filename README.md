@@ -4,7 +4,7 @@ An interactive cheatsheet for [Omarchy](https://omarchy.org/) terminal commands,
 shown through the Omarchy menu. Press **Super + O** to open it, just like the
 Neovim cheatsheet on **Super + N**.
 
-![Cheatsheet in the Omarchy menu](screenshot.png)
+![Omarchy Commands cheatsheet](om-cheatsheet.png)
 
 ## What it shows
 
