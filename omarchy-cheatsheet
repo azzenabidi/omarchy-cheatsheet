@@ -1,0 +1,199 @@
+#!/bin/bash
+printf '%s\n' \
+"DISCOVERY & HELP" \
+"omarchy commands [--all]                       → List every omarchy command" \
+"omarchy <group> --help                         → Show commands in a group" \
+"omarchy <command> --help                       → Show help for one command" \
+"omarchy version                                → Show installed Omarchy version" \
+"" \
+"UPDATES & SYSTEM" \
+"omarchy update [-y]                            → Update Omarchy and system packages" \
+"omarchy update available                       → Check if updates are available" \
+"omarchy update firmware                        → Update system firmware (fwupd)" \
+"omarchy update pkg prune                       → Prune old package cache versions" \
+"omarchy system lock                            → Lock screen and turn off display" \
+"omarchy system logout / reboot / shutdown      → Power controls (graceful)" \
+"omarchy system stats                           → Print CPU and memory stats" \
+"omarchy debug --no-sudo --print                → Print system debug info" \
+"omarchy hibernation setup / remove             → Set up or remove hibernation" \
+"omarchy disk speedtest [dir]                   → Measure disk read/write speed" \
+"" \
+"THEME & LOOK" \
+"omarchy theme set <name>                       → Apply an Omarchy theme" \
+"omarchy theme list                             → List available themes" \
+"omarchy theme switcher                         → Open the theme switcher" \
+"omarchy theme current                          → Show current theme" \
+"omarchy theme install <git-url>                → Install a theme from git" \
+"omarchy theme remove [name]                    → Remove a user-installed theme" \
+"omarchy theme bg next                          → Cycle to next background" \
+"omarchy theme bg set <image>                   → Set the background image" \
+"omarchy theme bg-switcher                      → Open the background switcher" \
+"omarchy font set <name> / list / current       → Manage monospace font" \
+"omarchy display text size [size|reset]         → Scale text everywhere" \
+"" \
+"CAPTURE, RECORDING & SCREEN" \
+"omarchy capture screenshot [smart|region|windows|fullscreen] [slurp|copy|save]" \
+"                                                 → Take a screenshot" \
+"omarchy capture screenrecording [--fullscreen] [--with-desktop-audio]" \
+"                                                 → Start screen recording" \
+"omarchy capture screenrecording --stop-recording" \
+"                                                 → Stop screen recording" \
+"omarchy capture region                         → Pick a region over frozen screen" \
+"omarchy capture text                           → OCR text from a screen region" \
+"omarchy capture qr                             → Decode a QR code from a region" \
+"omarchy capture webcam list                    → List available webcams" \
+"omarchy screensaver                            → Run the screensaver (TTE effects)" \
+"omarchy share <clipboard|file|folder>          → Share with LocalSend" \
+"" \
+"AUDIO & TRANSCODE" \
+"omarchy audio output volume <raise|lower|mute-toggle|+N|-N>" \
+"                                                 → Adjust volume with OSD" \
+"omarchy audio output switch                    → Switch audio output" \
+"omarchy audio source switch [next|previous]    → Cycle media source" \
+"omarchy audio input mute                       → Toggle microphone mute" \
+"omarchy audio tuning <on|off|status>           → Manage speaker tuning" \
+"omarchy transcode [input] [format] [resolution]" \
+"                                                 → Convert pictures/videos for sharing" \
+"omarchy transcode ascii <in> <out>             → Render an image as ASCII art" \
+"" \
+"DISPLAY & BRIGHTNESS" \
+"omarchy brightness display [+N%|N%-|N%]        → Adjust display brightness with OSD" \
+"omarchy brightness display <off|on>            → Turn display off/on" \
+"omarchy brightness keyboard <up|down|cycle|off|restore>" \
+"                                                 → Adjust keyboard backlight" \
+"omarchy hyprland monitor internal <on|off|toggle>" \
+"                                                 → Toggle the laptop display" \
+"omarchy hyprland monitor internal mirror <on|off|toggle>" \
+"                                                 → Mirror internal display" \
+"omarchy hyprland monitor scaling [up|down|SCALE]" \
+"                                                 → Adjust monitor scaling" \
+"" \
+"TOGGLES" \
+"omarchy toggle nightlight                      → Toggle nightlight temperature" \
+"omarchy toggle idle [toggle|stay-awake|allow-idle|status]" \
+"                                                 → Control idle behavior" \
+"omarchy toggle touchpad [on|off|toggle]        → Toggle the touchpad" \
+"omarchy toggle touchscreen [on|off|toggle]     → Toggle the touchscreen" \
+"omarchy toggle bar [toggle|on|off]             → Toggle bar visibility" \
+"omarchy toggle notification silencing          → Toggle do-not-disturb mode" \
+"omarchy toggle screensaver                     → Toggle screensaver availability" \
+"omarchy toggle suspend                         → Toggle suspend in system menu" \
+"omarchy toggle hybrid gpu                      → Switch dedicated/integrated GPU" \
+"omarchy toggle crash capture                   → Toggle crash notifications" \
+"" \
+"WINDOWS & WORKSPACES" \
+"omarchy hyprland focus app <app>               → Focus a window by application" \
+"omarchy hyprland window close all              → Close all open windows" \
+"omarchy hyprland window gaps toggle            → Toggle window gaps" \
+"omarchy hyprland window transparency toggle    → Toggle focused window transparency" \
+"omarchy hyprland window tiled fullscreen toggle" \
+"                                                 → Toggle tiled fullscreen" \
+"omarchy hyprland window width <save|restore>   → Save/restore focused window width" \
+"omarchy hyprland window single square aspect toggle" \
+"                                                 → Toggle square aspect ratio" \
+"omarchy hyprland window pop [w h x y]          → Pop-out a tile" \
+"omarchy hyprland workspace layout toggle       → Toggle dwindle/scrolling layout" \
+"omarchy launch or focus <pattern> <command>    → Launch or focus an app" \
+"omarchy launch or focus webapp <pattern> <url> → Launch or focus a web app" \
+"" \
+"REMINDERS & CLIPBOARD" \
+"omarchy reminder <minutes> [message]           → Set a desktop reminder" \
+"omarchy reminder show / clear                  → Show or clear reminders" \
+"omarchy clipboard paste text <text>            → Copy text and paste it" \
+"omarchy clipboard paste file <mime> <path>     → Copy a file to the clipboard" \
+"omarchy clipboard open --history-index <i>     → Open clipboard history entry" \
+"" \
+"RESTART & RELOAD" \
+"omarchy restart shell                          → Restart the Omarchy shell" \
+"omarchy restart hyprctl                        → Reload Hyprland config" \
+"omarchy restart terminal                       → Reload running terminals" \
+"omarchy restart hyprsunset                     → Restart nightlight service" \
+"omarchy restart audio                          → Restart audio services" \
+"omarchy restart bluetooth / wifi / trackpad    → Restart those services" \
+"omarchy restart app <name>                     → Restart an application (uwsm)" \
+"omarchy restart tmux / btop / helix / tmux     → Reload those tools" \
+"" \
+"RESET TO DEFAULTS (backs up first)" \
+"omarchy refresh shell                          → Reset shell.json to defaults" \
+"omarchy refresh hyprland                       → Reset Hyprland Lua configs" \
+"omarchy refresh config <path>                  → Reset one config file" \
+"omarchy refresh tmux / hyprsunset / sddm       → Reset specific configs" \
+"omarchy reinstall                              → Reinstall Omarchy + reset defaults" \
+"omarchy reinstall configs                      → Reset user configs (destructive)" \
+"" \
+"LAUNCH & DEFAULT APPS" \
+"omarchy launch browser [url]                   → Open the default browser" \
+"omarchy launch editor [--inline] <path>        → Open file in default editor" \
+"omarchy launch terminal [cmd...]               → Open a terminal in current dir" \
+"omarchy launch terminal tmux                   → Attach the Work tmux session" \
+"omarchy launch docker tui                      → Open lazydocker" \
+"omarchy launch screensaver                     → Launch the screensaver" \
+"omarchy launch about                           → Open fastfetch system info" \
+"omarchy default terminal <name>                → Set default terminal (alacritty|foot|ghostty|kitty)" \
+"omarchy default browser <name>                 → Set default browser" \
+"omarchy default editor <name>                  → Set default editor" \
+"omarchy default agent <name>                   → Set default coding agent" \
+"omarchy agent [--inline] [--pick]              → Launch the coding agent" \
+"omarchy agent prompt <prompt...>               → Launch the coding agent with a prompt" \
+"" \
+"PACKAGES & INSTALL / REMOVE" \
+"omarchy pkg add <pkgs...>                      → Install system packages" \
+"omarchy pkg aur add <pkgs...>                  → Install AUR packages" \
+"omarchy pkg remove                             → Fuzzy-find packages to remove" \
+"omarchy install app <name> <pkgs>              → Install a packaged app" \
+"omarchy install browser <name>                 → Install a browser" \
+"omarchy install terminal <name>                → Install a terminal" \
+"omarchy install font <name> <pkg> <family>     → Install a Nerd Font" \
+"omarchy install dev-env <stack>                → Install a dev environment" \
+"omarchy install gaming steam                   → Install Steam" \
+"omarchy install service tailscale              → Install Tailscale VPN" \
+"omarchy remove browser <name>                  → Remove a browser" \
+"omarchy remove gaming steam                    → Remove Steam (configs too)" \
+"omarchy remove service tailscale               → Remove Tailscale" \
+"omarchy remove preinstalls                     → Remove preinstalled apps" \
+"" \
+"BAR & PLUGINS" \
+"omarchy bar use <id>                           → Choose a bar layout" \
+"omarchy bar move <id> [placement]              → Move a bar widget" \
+"omarchy bar set <id> <key> <value>             → Set a widget config value" \
+"omarchy bar text color                         → Choose legible bar text color" \
+"omarchy plugin add [git-url]                   → Add a shell plugin from git" \
+"omarchy plugin clone <id>                      → Clone a built-in plugin for editing" \
+"omarchy plugin enable / disable <id>           → Enable or disable a plugin" \
+"omarchy plugin list / remove / update          → Manage shell plugins" \
+"omarchy plugin catalog                         → Show plugin manifests as JSON" \
+"" \
+"SETUP & SECURITY" \
+"omarchy setup security fingerprint             → Set up fingerprint auth" \
+"omarchy setup security fido2                   → Set up FIDO2 auth" \
+"omarchy setup security sudoless docker         → Enable sudoless Docker (root-equivalent!)" \
+"omarchy setup security sshd [--key=<pubkey>]   → Set up OpenSSH server" \
+"omarchy setup direct boot                      → Add an EFI boot entry" \
+"omarchy setup factory reset                    → Factory-reset the machine" \
+"omarchy sudo passwordless [MINUTES]            → Toggle passwordless sudo" \
+"omarchy sudo keepalive                         → Keep sudo credentials alive" \
+"omarchy hook install <type> <file>             → Install an automation hook" \
+"" \
+"WINDOWS, WEBAPPS & TUIS" \
+"omarchy webapp install <name> <url>            → Create a web app launcher" \
+"omarchy webapp remove [name]                   → Remove a web app launcher" \
+"omarchy tui install <name> <command>           → Create a terminal UI launcher" \
+"omarchy tui remove [name]                      → Remove a TUI launcher" \
+"omarchy windows vm <install|launch|stop|status|remove>" \
+"                                                 → Manage the Windows VM" \
+"omarchy games retro install <core> <game>      → Create a RetroArch launcher" \
+"omarchy voxtype install                        → Install voice dictation" \
+"" \
+"NETWORK & WEATHER" \
+"omarchy bluetooth power <on|off|toggle>        → Turn Bluetooth on/off" \
+"omarchy bluetooth device <pair|connect|disconnect|forget> <addr>" \
+"                                                 → Manage a Bluetooth device" \
+"omarchy dns [Cloudflare|Google|DHCP|Custom]    → Show or configure DNS" \
+"omarchy weather status                         → Show temperature and wind" \
+"omarchy weather location                       → Show or set weather location" \
+"omarchy tailscale send <machine> [file...]     → Send files via Taildrop" \
+"omarchy tailscale receive                      → Receive Taildrop files" \
+"" \
+"TIP: omarchy commands --all shows every command, including hidden/internal ones." \
+"TIP: omarchy menu keybindings shows all Hyprland keybindings." \
+| omarchy menu select 'Omarchy Commands' -- --width 820 --maxheight 600
